@@ -1,23 +1,15 @@
 import ToDoItem from "./ToDoItem";
 
-function ToDoList() {
-  const todos = [
-    { todo: "abc", completed: true },
-    {
-      todo: "bcdfdlshjklkjjklbcdfdlshjklkjjklbcdfdlshjklkjjklbcdfdlshjklkjjklb",
-      completed: false,
-    },
-    { todo: "tuf", completed: false },
-    { todo: "xyz", completed: true },
-  ];
-
+function ToDoList({ todos }) {
   return (
     <div className="relative w-full overflow-auto">
       <div className="w-full flex gap-3 flex-wrap justify-center py-6 bg-white rounded-lg shadow-lg">
-        {todos.map(({ todo, completed }) => (
+        {todos.map(({ id, todo, date, completed }) => (
           <ToDoItem
             key={crypto.randomUUID()}
+            id={id}
             todo={todo}
+            date={date}
             completed={completed}
           />
         ))}

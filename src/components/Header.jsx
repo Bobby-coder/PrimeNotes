@@ -1,4 +1,4 @@
-import { PlusIcon, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import Banner from "./Banner";
 
 function Header() {

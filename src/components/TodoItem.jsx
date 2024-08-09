@@ -1,7 +1,7 @@
 import { CheckCheck, Pen, X } from "lucide-react";
 import { gradients } from "../utils/gradients";
 
-function ToDoItem({ todo, completed }) {
+function ToDoItem({ id, todo, date, completed }) {
   // Generate random index to display random gradient
   let randomIndex = Math.floor(Math.random() * gradients.length);
 
@@ -15,7 +15,7 @@ function ToDoItem({ todo, completed }) {
           {todo}
         </p>
 
-        <p className="text-xs">{"2:35:37 PM 8/8/2024"}</p>
+        <p className="text-xs">{date}</p>
       </div>
 
       {/* Action Buttons */}
