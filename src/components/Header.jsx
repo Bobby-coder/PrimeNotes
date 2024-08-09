@@ -1,4 +1,4 @@
-import { Search } from "lucide-react";
+//import { Search } from "lucide-react";
 import Banner from "./Banner";
 
 function Header({ todoList }) {
@@ -40,14 +40,14 @@ function Header({ todoList }) {
         </h1>
 
         {/*Search Input*/}
-        <div className="flex items-center border rounded-lg p-2 bg-white w-full sm:w-1/3 sm:mb-[-12px]">
+        {/* <div className="flex items-center border rounded-lg p-2 bg-white w-full sm:w-1/3 sm:mb-[-12px]">
           <Search strokeWidth={2} className="w-4 h-4 text-gray-500 mr-2" />
           <input
             placeholder="Search tasks"
             className="w-full outline-none border-none bg-white text-gray-700 placeholder-gray-400"
             type="text"
           />
-        </div>
+        </div> */}
       </div>
 
       {/*Banners*/}
