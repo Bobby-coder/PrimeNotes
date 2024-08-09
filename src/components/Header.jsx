@@ -1,24 +1,32 @@
 import { Search } from "lucide-react";
 import Banner from "./Banner";
 
-function Header() {
-  {
-    /*Banner data*/
-  }
+function Header({ todoList }) {
+  // get count of all pending todos
+  const pendingTodos = todoList.reduce((acc, currTodo) => {
+    return acc + (currTodo.completed ? 0 : 1);
+  }, 0);
+
+  // get count of all completed todos
+  const completedTodos = todoList.reduce((acc, currTodo) => {
+    return acc + (currTodo.completed ? 1 : 0);
+  }, 0);
+
+  // Banner data
   const bannerData = [
     {
       gradient: "from-pink-500 to-orange-400",
-      count: 27,
+      count: todoList.length,
       title: "All",
     },
     {
       gradient: "from-purple-500 to-blue-400",
-      count: 9,
+      count: pendingTodos,
       title: "Pending",
     },
     {
       gradient: "from-green-400 to-teal-400",
-      count: 18,
+      count: completedTodos,
       title: "Completed",
     },
   ];
