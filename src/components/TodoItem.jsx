@@ -1,4 +1,4 @@
-import { CheckCheck, Pen, X } from "lucide-react";
+import { Check, Pen, Square, X } from "lucide-react";
 import { gradients } from "../utils/gradients";
 
 function ToDoItem({ id, todo, date, completed, setTodoList, allTodos }) {
@@ -10,6 +10,26 @@ function ToDoItem({ id, todo, date, completed, setTodoList, allTodos }) {
     // filter out that todo from allTodos array which have same id as of specified id
     let filteredTodos = allTodos.filter((currTodo) => currTodo.id !== id);
     setTodoList(filteredTodos);
+  }
+
+  // Mark as complete handler
+  function handleMarkAsComplete(id) {
+    // Transform that todo which have same id  as of specified id, by setting its "completed" property to true
+    const updatedTodos = allTodos.map((currTodo) => {
+      return currTodo.id === id ? { ...currTodo, completed: true } : currTodo;
+    });
+
+    setTodoList(updatedTodos);
+  }
+
+  // Mark as incomplete handler
+  function handleMarkAsIncomplete(id) {
+    // Transform that todo which have same id  as of specified id, by setting its "completed" property to false
+    const updatedTodos = allTodos.map((currTodo) => {
+      return currTodo.id === id ? { ...currTodo, completed: false } : currTodo;
+    });
+
+    setTodoList(updatedTodos);
   }
 
   return (
@@ -32,10 +52,26 @@ function ToDoItem({ id, todo, date, completed, setTodoList, allTodos }) {
           <button className="bg-blue-600 text-white py-2 px-3 rounded-md shadow-sm hover:bg-blue-700">
             <Pen size={16} />
           </button>
+
           {/* Mark as complete */}
-          <button className="bg-green-600 text-white py-2 px-3 rounded-md shadow-sm hover:bg-green-700">
-            <CheckCheck size={16} />
-          </button>
+          {!completed && (
+            <button
+              className="bg-green-600 text-white py-2 px-3 rounded-md shadow-sm hover:bg-green-700"
+              onClick={() => handleMarkAsComplete(id)}
+            >
+              <Square size={18} />
+            </button>
+          )}
+
+          {/* Mark as incomplete */}
+          {completed && (
+            <button
+              className="bg-green-600 text-white py-2 px-3 rounded-md shadow-sm hover:bg-green-700"
+              onClick={() => handleMarkAsIncomplete(id)}
+            >
+              <Check size={18} />
+            </button>
+          )}
         </div>
       </div>
 
