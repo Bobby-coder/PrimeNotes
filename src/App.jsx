@@ -40,6 +40,9 @@ function App() {
   function handleEdit(e) {
     e.preventDefault();
 
+    // Do nothing if input string is empty
+    if (!todoString.trim()) return;
+
     // generate updated time
     const newDate = new Date();
 
@@ -70,7 +73,7 @@ function App() {
     <div className="p-2 sm:p-8 md:p-12 lg:p-16">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <Header />
+        <Header todoList={todoList} />
 
         {/* Add form */}
         <form
@@ -80,7 +83,7 @@ function App() {
           {/* Add Input */}
           <div className="flex-1 flex items-center border border-gray-300 rounded-lg shadow-sm overflow-hidden w-full">
             <input
-              placeholder="Add a new task"
+              placeholder={!editingId && "Add a new task"}
               className="w-full p-3 outline-none border-none bg-white text-gray-700 placeholder-gray-400"
               type="text"
               onChange={(e) => setTodoString(e.target.value)}
