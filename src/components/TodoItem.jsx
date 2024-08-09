@@ -1,9 +1,16 @@
 import { CheckCheck, Pen, X } from "lucide-react";
 import { gradients } from "../utils/gradients";
 
-function ToDoItem({ id, todo, date, completed }) {
+function ToDoItem({ id, todo, date, completed, setTodoList, allTodos }) {
   // Generate random index to display random gradient
   let randomIndex = Math.floor(Math.random() * gradients.length);
+
+  // Handler to remove todo based on id
+  function handleRemove(id) {
+    // filter out that todo from allTodos array which have same id as of specified id
+    let filteredTodos = allTodos.filter((currTodo) => currTodo.id !== id);
+    setTodoList(filteredTodos);
+  }
 
   return (
     <div
@@ -37,6 +44,7 @@ function ToDoItem({ id, todo, date, completed }) {
         <button
           className="flex items-center justify-center h-8 w-8 bg-red-600 text-white rounded-full border border-red-500 hover:bg-red-700
     focus:outline-none focus:ring-2 focus:ring-red-400 transition duration-150 ease-in-out shadow-md"
+          onClick={() => handleRemove(id)}
         >
           <X size={16} />
         </button>
