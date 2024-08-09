@@ -17,16 +17,21 @@ function App() {
   // Add new todo handler
   function handleAdd(e) {
     e.preventDefault();
+    // Do nothing if input string is empty
     if (!todoString.trim()) return;
 
     let newDate = new Date();
+    // create new todo object
     const newTodo = {
       id: crypto.randomUUID(),
       todo: todoString.trim(),
       date: `${newDate.toLocaleTimeString()} ${newDate.toLocaleDateString()}`,
       completed: false,
     };
+
+    // update todo list
     setTodoList([...todoList, newTodo]);
+    // reset input
     setTodoString("");
   }
 
@@ -63,7 +68,7 @@ function App() {
         </form>
 
         {/* Todo List */}
-        <TodoList todos={todoList} />
+        <TodoList todos={todoList} setTodoList={setTodoList} />
       </div>
     </div>
   );
