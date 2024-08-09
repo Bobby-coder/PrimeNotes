@@ -1,7 +1,16 @@
 import { Check, Pen, Square, X } from "lucide-react";
 import { gradients } from "../utils/gradients";
 
-function ToDoItem({ id, todo, date, completed, setTodoList, allTodos }) {
+function ToDoItem({
+  id,
+  todo,
+  date,
+  completed,
+  setTodoList,
+  allTodos,
+  setEditingId,
+  setTodoString,
+}) {
   // Generate random index to display random gradient
   let randomIndex = Math.floor(Math.random() * gradients.length);
 
@@ -32,6 +41,12 @@ function ToDoItem({ id, todo, date, completed, setTodoList, allTodos }) {
     setTodoList(updatedTodos);
   }
 
+  // Edit button handler
+  function handleEdit(id, string) {
+    setEditingId(id);
+    setTodoString(string);
+  }
+
   return (
     <div
       className={`relative flex flex-col gap-1 p-4 pb-4 bg-gradient-to-r ${gradients[randomIndex]} w-[350px] text-white shadow-md rounded-md cursor-pointer group`}
@@ -49,7 +64,10 @@ function ToDoItem({ id, todo, date, completed, setTodoList, allTodos }) {
       <div className="absolute bottom-2 right-2 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <div className="flex items-center gap-2">
           {/* Edit */}
-          <button className="bg-blue-600 text-white py-2 px-3 rounded-md shadow-sm hover:bg-blue-700">
+          <button
+            className="bg-blue-600 text-white py-2 px-3 rounded-md shadow-sm hover:bg-blue-700"
+            onClick={() => handleEdit(id, todo)}
+          >
             <Pen size={16} />
           </button>
 
